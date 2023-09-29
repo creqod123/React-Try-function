@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { convertToUpperCase } from "../Utils/converToUpperCase";
 import { convertToLowerCase } from "../Utils/convertToLowerCase";
+import useCounter from '../Background/customHook'
 
 function First({ para, checkThis }) {
 
@@ -14,6 +15,7 @@ function First({ para, checkThis }) {
     //         <p>{`${onChange()} 456456456`}</p>
     //     </div>
     // )
+
 
 
     // use Effect example     ================================================
@@ -35,6 +37,7 @@ function First({ para, checkThis }) {
     //         <button onClick={() => setCount(count + 1)}>Increment</button>
     //     </div>
     // );
+
 
 
     // Utils example ===============================================
@@ -59,28 +62,45 @@ function First({ para, checkThis }) {
     //     </div>
     // )
 
+
+
     // check Promises =================================================
-    useEffect(() => {
-        asyncOperation(false)
-            .then(() => {
-            })
-            .catch(() => {
-            })
-    }, [])
-    function asyncOperation(success) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if (success) {
-                    resolve(para = '');
-                } else {
-                    reject();
-                }
-            }, 2000);
-        });
-    }
+    // useEffect(() => {
+    //     asyncOperation(false)
+    //         .then(() => {
+    //         })
+    //         .catch(() => {
+    //         })
+    // }, [])
+    // function asyncOperation(success) {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             if (success) {
+    //                 resolve(para = '');
+    //             } else {
+    //                 reject();
+    //             }
+    //         }, 2000);
+    //     });
+    // }
+    // return (
+    //     <div>Hello world</div>
+    // )
+
+    // custom Hook create ================================== 
+    const Counter = () => {
+        const { count, increment, decrement } = useCounter();
+        return (
+            <div>
+                <h1>Count: {count}</h1>
+                <button onClick={increment}>Increment</button>
+                <button onClick={decrement}>Decrement</button>
+            </div>
+        );
+    };
 
     return (
-        <div>Hello world</div>
+        <div>{Counter()}</div>
     )
 
 }
